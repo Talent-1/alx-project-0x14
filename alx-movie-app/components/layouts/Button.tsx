@@ -1,15 +1,21 @@
 import React from 'react';
-import {ButtonProps} from '@/interfaces';
 
-
-
-const Button: React.FC <ButtonProps> = ({title, styles = " ", onClick}) => {
-const baseClasses = 'bg-indigo-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-700 transition duration-300';
-const combinedClasses = `${baseClasses} ${styles}`;
-return (
-    <button className={combinedClasses.trim()} onClick={onClick}>
-        {title}
-    </button>
-)
+// Define the component's props interface for better type safety
+interface ButtonProps {
+  children: React.ReactNode;
+  onClick?: () => void;
+  // Add other common button props like 'type', 'className', etc. as needed
 }
+
+const Button: React.FC<ButtonProps> = ({ children, onClick }) => {
+  return (
+    <button 
+      onClick={onClick}
+      className="px-4 py-2 font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75"
+    >
+      {children}
+    </button>
+  );
+};
+
 export default Button;
